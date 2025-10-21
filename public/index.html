@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop Management System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="font-sans p-8 bg-gray-100">
+  <h1 class="text-3xl font-bold mb-6 text-blue-700">🛍️ Shop Management System</h1>
+
+  <!-- Add Product Section -->
+  <section class="mb-8">
+    <h2 class="text-xl font-semibold mb-4">Add New Product</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <input id="name" placeholder="Product Name" class="border rounded px-3 py-2" />
+      <input id="description" placeholder="Description" class="border rounded px-3 py-2" />
+      <input id="price" type="number" placeholder="Price (TZS)" class="border rounded px-3 py-2" />
+      <input id="quantity" type="number" placeholder="Quantity" class="border rounded px-3 py-2" />
+    </div>
+    <button onclick="addProduct()" class="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Add Product</button>
+  </section>
+
+  <!-- Search -->
+  <div class="mb-4">
+    <input id="searchInput" placeholder="Search products..." class="border rounded px-3 py-2 w-full md:w-1/2" oninput="searchProducts()" />
+  </div>
+
+  <!-- Inventory Section -->
+  <section>
+    <h2 class="text-xl font-semibold mb-4">📦 Inventory</h2>
+    <table class="min-w-full bg-white shadow rounded overflow-hidden">
+      <thead class="bg-gray-200 text-left">
+        <tr>
+          <th class="px-4 py-2">Name</th>
+          <th class="px-4 py-2">Description</th>
+          <th class="px-4 py-2">Price</th>
+          <th class="px-4 py-2">Quantity</th>
+          <th class="px-4 py-2">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="inventory" class="divide-y divide-gray-300"></tbody>
+    </table>
+  </section>
+
+  <!-- Modals will be injected here -->
+  <div id="modalsContainer"></div>
+
+  <script>
+    fetch('modals.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('modalsContainer').innerHTML = html;
+      });
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
